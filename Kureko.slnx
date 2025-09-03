@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="lib\Lagrange.Core\Lagrange.Core\Lagrange.Core.csproj" Type="Classic C#" />
+  <Project Path="src\Kureko\Kureko.csproj" Type="Classic C#" />
+</Solution>
