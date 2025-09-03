@@ -95,13 +95,13 @@ public partial class KurekoBot
                 await bot.SendMessage(MessageBuilder.Friend(message.Chain.FriendUin)
                     .Text(response)
                     .Build());
-
             activity?.Dispose();
         });
     }
 
     private void OnGroupMessageReceived(BotContext bot, GroupMessageEvent message)
     {
+        var activity = BotDiagnostics.StartActivity();
         if (message.Chain.FriendUin == bot.BotUin)
             return;
         if (!message.Chain.HasTypeOf<TextEntity>())
@@ -122,6 +122,7 @@ public partial class KurekoBot
                 await bot.SendMessage(MessageBuilder.Group(message.Chain.GroupUin!.Value)
                     .Text(response)
                     .Build());
+            activity?.Dispose();
         });
     }
 }

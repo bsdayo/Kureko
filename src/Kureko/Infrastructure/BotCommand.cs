@@ -6,9 +6,15 @@ public abstract class BotCommand : Command
 {
     protected BotCommand(string name, string? description = null) : base(name, description)
     {
-        SetAction(result => InvokeAsync(result,
-            result.InvocationConfiguration.Output,
-            result.InvocationConfiguration.Error));
+        SetAction(InvokeAsync);
+    }
+
+    private Task InvokeAsync(ParseResult parseResult)
+    {
+        using var activity = BotDiagnostics.StartActivity();
+        return InvokeAsync(parseResult,
+            parseResult.InvocationConfiguration.Output,
+            parseResult.InvocationConfiguration.Error);
     }
 
     protected abstract Task InvokeAsync(ParseResult parseResult, TextWriter output, TextWriter error);

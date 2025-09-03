@@ -110,6 +110,9 @@ public sealed partial class KurekoBot : IHost
             exception = ex;
         }
 
+        BotDiagnostics.RecordCommandExecution(result.CommandResult.Command.Name,
+            exception is null && errorWriter.GetStringBuilder().Length == 0);
+
         var responseBuilder = new StringBuilder();
 
         if (outputWriter.GetStringBuilder().Length > 0)
