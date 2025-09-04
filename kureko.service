@@ -1,0 +1,12 @@
+[Unit]
+Description=Kureko - Private QQ bot
+
+[Service]
+ExecStart=/usr/local/bin/kureko run -c /etc/kureko/config.json
+WorkingDirectory=/var/lib/kureko
+User=root
+Group=root
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
